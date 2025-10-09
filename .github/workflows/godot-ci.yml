@@ -8,7 +8,7 @@ on:
 env:
   GODOT_VERSION: 4.5
   EXPORT_NAME: gdt_sndbx
-  PROJECT_PATH: gdt_sndbx
+  PROJECT_PATH: src
 jobs:
   web-build:
     name: Web Build and Deploy to GitHub Pages
