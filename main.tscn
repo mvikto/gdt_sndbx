@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://covmphai22i60"]
+
+[ext_resource type="Script" uid="uid://ct0e87gtjaorv" path="res://free_camera.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://dme7x7bh7i32j" path="res://detach_window.gd" id="2_0xm2m"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
+
+[sub_resource type="Environment" id="Environment_7dm0k"]
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_7dm0k"]
+
+[node name="main" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_7dm0k")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.999812, 0, -0.019389281, 0, 1, 0, 0.019389281, 0, -0.999812, 0, 0, 0)
+script = ExtResource("1_ig7tw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.46948698, 0.8829394, 0, -0.8829394, 0.46948698, 0, 5.752107, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7dm0k")
+camera_attributes = SubResource("CameraAttributesPhysical_7dm0k")
+
+[node name="DetachWindow" type="Node" parent="."]
+script = ExtResource("2_0xm2m")
