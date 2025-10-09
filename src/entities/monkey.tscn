@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmvy36uxt7nq4"]
+
+[ext_resource type="PackedScene" uid="uid://b5e0g2y1pcmop" path="res://entities/monkey.blend" id="1_vt1ep"]
+[ext_resource type="Script" uid="uid://b7i2eo7kn7l8r" path="res://entities/monkey.gd" id="2_ml4wq"]
+
+[node name="monkey" instance=ExtResource("1_vt1ep")]
+script = ExtResource("2_ml4wq")
