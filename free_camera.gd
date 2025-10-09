@@ -4,7 +4,6 @@ var speed := 10.0
 var mouse_sensitivity := 0.1
 var velocity := Vector3.ZERO
 
-
 func is_mouse_captured():
 	return Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
 
