@@ -6,7 +6,9 @@ on:
   pull_request:
     branches: [ main ]
 env:
+  GODOT_VERSION: 4.5
   EXPORT_NAME: gdt_sndbx
+  PROJECT_PATH: src
 jobs:
   web-build:
     name: Web Build and Deploy to GitHub Pages
@@ -15,7 +17,7 @@ jobs:
       image: barichello/godot-ci:4.5
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
         with:
           lfs: true
       - name: Setup
@@ -25,13 +27,13 @@ jobs:
       - name: Web Build
         run: |
           mkdir -v -p build/web
-          cd src
-          godot --headless --verbose --export-release "Web" "../build/web/$EXPORT_NAME/index.html"
-          cd ..
+          EXPORT_DIR="$(readlink -f build)"
+          cd $PROJECT_PATH
+          godot --headless --verbose --export-release "Web" "$EXPORT_DIR/web/index.html"
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.EXPORT_NAME }}-web
+          name: web
           path: build/web
       - name: Install rsync 📚
         run: |
