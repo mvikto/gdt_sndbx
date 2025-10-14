@@ -1,46 +1,42 @@
-[gd_scene load_steps=7 format=3 uid="uid://covmphai22i60"]
+[gd_scene load_steps=10 format=3 uid="uid://covmphai22i60"]
 
-[ext_resource type="Script" uid="uid://ct0e87gtjaorv" path="res://free_camera.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://dme7x7bh7i32j" path="res://detach_window.gd" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://dmvy36uxt7nq4" path="res://entities/monkey.tscn" id="2_h2yge"]
+[ext_resource type="Shader" uid="uid://dv27qww3x3bmc" path="res://sky_shader.gdshader" id="4_1bvp3"]
+[ext_resource type="LightmapGIData" uid="uid://kh4b6gb3ohfg" path="res://main.lmbake" id="5_7mycd"]
+[ext_resource type="PackedScene" uid="uid://b2htqw0ddg7p8" path="res://entities/building.tscn" id="5_272bh"]
+[ext_resource type="Texture2D" uid="uid://b5gge0fcr120d" path="res://sky.jpg" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://bu2v2vg7kvpb6" path="res://entities/player.tscn" id="6_272bh"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lquwl"]
+shader = ExtResource("4_1bvp3")
+shader_parameter/skyColor = Color(0.2356, 0.39291996, 0.76, 1)
+shader_parameter/horizColor = Color(0.13671875, 0.12657166, 0.12657166, 1)
+shader_parameter/skyTexture = ExtResource("5_lquwl")
 
-[sub_resource type="Environment" id="Environment_7dm0k"]
+[sub_resource type="Sky" id="Sky_7mycd"]
+sky_material = SubResource("ShaderMaterial_lquwl")
 
-[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_7dm0k"]
+[sub_resource type="Environment" id="Environment_272bh"]
+background_mode = 2
+sky = SubResource("Sky_7mycd")
+sky_rotation = Vector3(0, 0, 1.5707964)
 
 [node name="main" type="Node3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_7dm0k")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.999812, 0, -0.019389281, 0, 1, 0, 0.019389281, 0, -0.999812, 0, 0, 0)
-script = ExtResource("1_ig7tw")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.46948698, 0.8829394, 0, -0.8829394, 0.46948698, 0, 5.752107, 0)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_7dm0k")
-camera_attributes = SubResource("CameraAttributesPhysical_7dm0k")
-
-[node name="monkey2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.8132868)
-target = NodePath("../Camera3D")
-
-[node name="monkey3" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.702029)
-target = NodePath("../Camera3D")
-
-[node name="monkey4" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.450041, 0, -0.72781086)
-target = NodePath("../Camera3D")
-
-[node name="monkey" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2452407, 0, -5.10967)
-target = NodePath("../Camera3D")
+transform = Transform3D(-2.580957e-08, -0.5299045, 0.8480574, 1.4901163e-08, 0.8480574, 0.5299045, -1, 2.631365e-08, -1.3991806e-08, 20, 22.752108, 0)
+light_bake_mode = 1
 
 [node name="DetachWindow" type="Node" parent="."]
 script = ExtResource("2_0xm2m")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_272bh")
+
+[node name="LightmapGI" type="LightmapGI" parent="."]
+light_data = ExtResource("5_7mycd")
+
+[node name="Building" parent="." instance=ExtResource("5_272bh")]
+
+[node name="Player" parent="." instance=ExtResource("6_272bh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)

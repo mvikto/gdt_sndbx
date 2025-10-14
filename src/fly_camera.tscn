@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0uwp8js15crm"]
+
+[ext_resource type="Script" uid="uid://ct0e87gtjaorv" path="res://free_camera.gd" id="1_2lsi4"]
+
+[node name="FlyCamera" type="Camera3D"]
+script = ExtResource("1_2lsi4")
