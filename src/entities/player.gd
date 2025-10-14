@@ -26,7 +26,6 @@ func _input(event):
 	running = Input.is_action_pressed("sprint")
 
 	if Input.is_action_just_pressed("move_up") and is_on_floor():
-		print_debug("Jump")
 		velocity.y = jump_velocity
 
 func _process(_delta):
