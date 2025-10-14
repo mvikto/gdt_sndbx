@@ -31,12 +31,11 @@ func _input(event):
 func _process(_delta):
 	if not is_mouse_captured():
 		return
+	var horizontal := Input.get_axis("move_left", "move_right")
+	var move_forward := Input.get_axis("move_forward", "move_backward")
 
 	# wasd
 	if is_on_floor():
-		var horizontal := Input.get_axis("move_left", "move_right")
-		var move_forward := Input.get_axis("move_forward", "move_backward")
-
 		var direction := Vector3(horizontal, 0, move_forward).normalized()
 		direction = global_transform.basis * direction
 		var speed := running_speed if running else walking_speed
