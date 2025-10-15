@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://covmphai22i60"]
+[gd_scene load_steps=11 format=3 uid="uid://covmphai22i60"]
 
 [ext_resource type="Script" uid="uid://dme7x7bh7i32j" path="res://detach_window.gd" id="2_0xm2m"]
 [ext_resource type="Shader" uid="uid://dv27qww3x3bmc" path="res://sky_shader.gdshader" id="4_1bvp3"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b2htqw0ddg7p8" path="res://entities/building.tscn" id="5_272bh"]
 [ext_resource type="Texture2D" uid="uid://b5gge0fcr120d" path="res://sky.jpg" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://bu2v2vg7kvpb6" path="res://entities/player.tscn" id="6_272bh"]
+[ext_resource type="PackedScene" uid="uid://bbvd0kn5lq0y5" path="res://entities/box.tscn" id="7_272bh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lquwl"]
 shader = ExtResource("4_1bvp3")
@@ -26,6 +27,7 @@ sky_rotation = Vector3(0, 0, 1.5707964)
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-2.580957e-08, -0.5299045, 0.8480574, 1.4901163e-08, 0.8480574, 0.5299045, -1, 2.631365e-08, -1.3991806e-08, 20, 22.752108, 0)
 light_bake_mode = 1
+shadow_enabled = true
 
 [node name="DetachWindow" type="Node" parent="."]
 script = ExtResource("2_0xm2m")
@@ -40,3 +42,6 @@ light_data = ExtResource("5_7mycd")
 
 [node name="Player" parent="." instance=ExtResource("6_272bh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Box" parent="." instance=ExtResource("7_272bh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6792752, 1.3865874, 2.2859833)

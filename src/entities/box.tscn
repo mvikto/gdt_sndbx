@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbvd0kn5lq0y5"]
+
+[ext_resource type="Material" uid="uid://pscrmoee2fny" path="res://materials/gray_grid.tres" id="1_c475x"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5vw27"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kek77"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4c57u"]
+
+[node name="Box" type="RigidBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_5vw27")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_kek77")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_c475x")
+gi_mode = 0
+mesh = SubResource("BoxMesh_4c57u")
